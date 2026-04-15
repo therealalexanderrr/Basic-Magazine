@@ -1,0 +1,2 @@
+# Basic-Magazine
+Basic Magazine
