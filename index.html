@@ -17,43 +17,52 @@
             overflow-x: hidden;
         }
 
+        /* 顶部导航层级最高，确保菜单弹出时不被图片遮挡 */
+        header { 
+            height: 80px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
+
         .article-icon { 
             background-color: rgba(245, 208, 76, 0.9); 
             color: #000; 
         }
 
-        #nav-links { transition: max-height 0.5s ease-in-out; }
-        header { height: 80px; }
+        #nav-links { 
+            transition: max-height 0.5s ease-in-out; 
+            background-color: #dcd8cf; /* 确保下拉菜单背景不透明 */
+        }
 
         /* --- Swiper 滚轴样式 --- */
         .swiper {
             width: 100%;
             height: calc(100vh - 80px);
+            z-index: 10; /* 低于 header */
         }
 
         .swiper-slide {
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            /* 非活跃状态缩小并降低透明度，营造层次感 */
-            transform: scale(0.7); 
-            opacity: 0.5;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s;
+            transform: scale(0.8); /* 两侧缩放稍微大一点点 */
+            opacity: 0.6;
         }
 
-        /* 只有中间激活的图是 1:1 大小且全彩 */
         .swiper-slide-active {
-            transform: scale(1.1); /* 稍微比原比例大一点点，突出中心 */
+            transform: scale(1.05); /* 中间稍微放大 */
             opacity: 1;
-            z-index: 10;
+            z-index: 20;
         }
 
         .swiper-slide img {
-            max-height: 70vh; /* 限制图片高度，留出上下呼吸空间 */
+            max-height: 75vh;
             width: auto;
             aspect-ratio: 3/4;
             object-fit: cover;
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         }
 
         /* --- 竖屏恢复：单栏下滑排版 --- */
@@ -68,7 +77,7 @@
                 width: 100% !important;
                 transform: scale(1) !important;
                 opacity: 1 !important;
-                margin-bottom: 60px !important;
+                margin-bottom: 48px !important;
                 display: block !important;
             }
             .swiper-slide img {
@@ -78,9 +87,9 @@
             }
             main { padding: 40px 24px !important; max-width: 768px; margin: 0 auto; }
             footer { display: block; }
+            .swiper { height: auto; overflow: visible; }
         }
 
-        /* --- 横屏隐藏页脚 --- */
         @media (orientation: landscape) {
             footer { display: none; }
             main { padding: 0 !important; }
@@ -89,10 +98,10 @@
 </head>
 <body>
 
-    <header class="sticky top-0 z-50 bg-[#dcd8cf]/95 backdrop-blur-md border-b border-[#c7c0af]">
+    <header class="bg-[#dcd8cf]/95 backdrop-blur-md border-b border-[#c7c0af]">
         <nav class="max-w-screen-md mx-auto px-6 h-full flex flex-col justify-center">
             <div class="flex justify-between items-center">
-                <a href="index.html" class="transition-colors active:text-[#f5d04c] outline-none group">
+                <a href="index.html" class="transition-colors active:text-[#f5d04c] outline-none">
                     <h1 class="text-3xl font-black tracking-tighter">BÅSIC MAGAZINE.</h1>
                 </a>
                 <button onclick="toggleNav()" class="p-1 hover:opacity-60 transition focus:outline-none">
@@ -101,8 +110,8 @@
                     </svg>
                 </button>
             </div>
-            <div id="nav-links" style="max-height: 0px;" class="overflow-hidden text-[12px] font-bold tracking-widest uppercase">
-                <div class="mt-6 pb-2 border-t border-[#c7c0af]/30 flex justify-around items-center pt-6">
+            <div id="nav-links" style="max-height: 0px;" class="overflow-hidden text-[12px] font-bold tracking-widest uppercase relative z-50">
+                <div class="mt-6 pb-4 border-t border-[#c7c0af]/30 flex justify-around items-center pt-6">
                     <a href="index.html" class="text-[#f5d04c]">首页专栏</a>
                     <a href="hotels.html" class="hover:text-[#f5d04c]">酒店分享</a>
                     <a href="social.html" class="hover:text-[#f5d04c]">社媒导航</a>
@@ -116,31 +125,31 @@
         <main class="swiper-wrapper">
             <div class="swiper-slide">
                 <a href="https://weibo.com/7465274644/5280051904119993" target="_blank" class="relative group">
-                    <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-sm">文章</div>
+                    <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
                     <img src="vol5.PNG" alt="vol5">
                 </a>
             </div>
             <div class="swiper-slide">
                 <a href="https://weibo.com/7465274644/5279423488068621" target="_blank" class="relative group">
-                    <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-sm">文章</div>
+                    <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
                     <img src="vol4.JPG" alt="vol4">
                 </a>
             </div>
             <div class="swiper-slide">
                 <a href="https://weibo.com/7465274644/5278560929451127" target="_blank" class="relative group">
-                    <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-sm">文章</div>
+                    <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
                     <img src="vol3.JPG" alt="vol3">
                 </a>
             </div>
             <div class="swiper-slide">
                 <a href="https://weibo.com/7465274644/4857556000315503" target="_blank" class="relative group">
-                    <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-sm">文章</div>
+                    <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
                     <img src="vol2.PNG" alt="vol2">
                 </a>
             </div>
             <div class="swiper-slide">
                 <a href="https://weibo.com/7465274644/4854527280808008" target="_blank" class="relative group">
-                    <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-sm">文章</div>
+                    <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
                     <img src="vol1.PNG" alt="vol1">
                 </a>
             </div>
@@ -153,31 +162,41 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        let swiperInstance = null;
+
         const initSwiper = () => {
             const isLandscape = window.innerWidth > window.innerHeight;
             if (isLandscape) {
                 return new Swiper(".mySwiper", {
-                    slidesPerView: 1.8,   // 同时看到中间大图和两边的小图边缘
-                    centeredSlides: true, // 激活的图居中
-                    spaceBetween: 20,     // 图与图之间的间隙
-                    loop: true,           // 无限循环滑动
-                    grabCursor: true,     // 鼠标悬停显示抓取手势
-                    keyboard: true,       // 支持键盘左右键滑动
+                    slidesPerView: 1.8,   
+                    centeredSlides: true, 
+                    spaceBetween: 10,     // 间距调小了
+                    loop: true,           
+                    grabCursor: true,
+                    keyboard: true,
                 });
             }
             return null;
         };
 
-        let swiper = initSwiper();
+        swiperInstance = initSwiper();
 
+        // 监听屏幕尺寸变化
         window.addEventListener('resize', () => {
-            if (swiper) swiper.destroy(true, true);
-            swiper = initSwiper();
+            if (swiperInstance) {
+                swiperInstance.destroy(true, true);
+            }
+            swiperInstance = initSwiper();
         });
 
+        // 菜单切换函数
         function toggleNav() {
             const navLinks = document.getElementById('nav-links');
-            navLinks.style.maxHeight = (navLinks.style.maxHeight === "0px" || navLinks.style.maxHeight === "") ? "120px" : "0px";
+            if (navLinks.style.maxHeight === "0px" || navLinks.style.maxHeight === "") {
+                navLinks.style.maxHeight = "200px"; // 稍微给大一点空间
+            } else {
+                navLinks.style.maxHeight = "0px";
+            }
         }
     </script>
 </body>
