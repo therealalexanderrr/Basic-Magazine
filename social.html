@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BÅSIC MAGAZINE | 社媒导航</title>
+    <title>BÅSIC MAGAZINE | 酒店分享</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap');
@@ -12,13 +12,12 @@
             background-color: #dcd8cf; 
             color: #4d3326;
         }
-        .social-card {
-            background-color: #c7c0af; /* 略深于背景的米灰色 */
-            transition: all 0.3s ease;
+        .article-icon {
+            background-color: rgba(245, 208, 76, 0.9);
+            color: #000;
         }
-        .social-card:hover {
-            background-color: #f5d04c; /* 悬停时变为LOGO金黄色 */
-            transform: translateY(-5px);
+        #nav-links.hidden {
+            display: none;
         }
     </style>
 </head>
@@ -29,7 +28,7 @@
             <div class="flex justify-between items-start">
                 <div>
                     <h1 class="text-3xl font-black tracking-tighter">BÅSIC MAGAZINE.</h1>
-                    <p class="text-[10px] tracking-[0.4em] uppercase font-light mt-1 opacity-80">BASIC SOCIAL</p>
+                    <p class="text-[10px] tracking-[0.4em] uppercase font-light mt-1 opacity-80">BASIC DESTINATION</p>
                 </div>
                 
                 <button onclick="toggleNav()" class="p-1 hover:opacity-60 transition focus:outline-none">
@@ -43,30 +42,27 @@
 
             <div id="nav-links" class="hidden mt-6 pb-2 border-t border-[#c7c0af]/30">
                 <div class="flex justify-around items-center pt-6 text-sm font-bold tracking-widest uppercase">
-                    <a href="index.html" class="hover:text-[#f5d04c]">首页专栏</a>
-                    <a href="hotels.html" class="hover:text-[#f5d04c]">酒店分享</a>
-                    <a href="social.html" class="text-[#f5d04c]">社媒导航</a>
+                    <a href="index.html" class="hover:text-[#f5d04c] transition">首页专栏</a>
+                    <a href="hotels.html" class="text-[#f5d04c] transition">酒店分享</a>
+                    <a href="social.html" class="hover:text-[#f5d04c] transition">社媒导航</a>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main class="max-w-screen-md mx-auto px-6 py-20 space-y-8">
+    <main class="max-w-screen-md mx-auto px-6 py-10 space-y-16">
         
-        <a href="https://weibo.com/u/7465274644" target="_blank" class="social-card block p-10 rounded-sm shadow-sm flex flex-col items-center justify-center text-center">
-            <span class="text-[10px] tracking-[0.2em] uppercase opacity-60 mb-2">Weibo</span>
-            <h2 class="text-xl font-bold italic tracking-tight">@BasicMagazine</h2>
+        <a href="https://weibo.com/7465274644/5141170255560754" target="_blank" class="block group relative">
+            <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-sm">文章</div>
+            <div class="aspect-[3/4] overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
+                <img src="hotel1.PNG" alt="Hotel 1" class="w-full h-full object-cover">
+            </div>
         </a>
 
-        <a href="https://www.instagram.com/basicmagazine.cn?igsh=MTh1cmJzc2pta29wNg==" target="_blank" class="social-card block p-10 rounded-sm shadow-sm flex flex-col items-center justify-center text-center">
-            <span class="text-[10px] tracking-[0.2em] uppercase opacity-60 mb-2">Instagram</span>
-            <h2 class="text-xl font-bold italic tracking-tight">@basicmagazine.cn</h2>
-        </a>
-
-    </main>
+        </main>
 
     <footer class="py-20 text-center border-t border-[#c7c0af] mt-10">
-        <p class="text-[10px] uppercase tracking-[0.3em] opacity-50">© 2026 BÅSIC MAGAZINE. SOCIAL.</p>
+        <p class="text-[10px] uppercase tracking-[0.3em] opacity-50">© 2026 BÅSIC MAGAZINE. DESTINATION.</p>
     </footer>
 
     <script>
