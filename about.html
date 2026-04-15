@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BÅSIC MAGAZINE | 关于我们</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #dcd8cf; 
+            color: #4d3326;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="sticky top-0 z-50 bg-[#dcd8cf]/95 backdrop-blur-md border-b border-[#c7c0af]">
+        <nav class="max-w-screen-md mx-auto px-6 py-6">
+            <div class="flex justify-between items-start">
+                <a href="index.html" class="transition-colors active:text-[#f5d04c] outline-none group">
+                    <h1 class="text-3xl font-black tracking-tighter text-inherit">BÅSIC MAGAZINE.</h1>
+                    <p class="text-[10px] tracking-[0.4em] uppercase font-light mt-1 opacity-80">ABOUT US</p>
+                </a>
+                <button onclick="toggleNav()" class="p-1 hover:opacity-60 transition focus:outline-none">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+            </div>
+            <div id="nav-links" style="max-height: 0px;" class="overflow-hidden transition-all duration-500 ease-in-out">
+                <div class="mt-6 pb-2 border-t border-[#c7c0af]/30">
+                    <div class="flex justify-around items-center pt-6 text-[12px] font-bold tracking-widest uppercase">
+                        <a href="index.html" class="hover:text-[#f5d04c]">首页专栏</a>
+                        <a href="hotels.html" class="hover:text-[#f5d04c]">酒店分享</a>
+                        <a href="social.html" class="hover:text-[#f5d04c]">社媒导航</a>
+                        <a href="about.html" class="text-[#f5d04c]">关于我们</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-screen-md mx-auto px-6 py-20 text-center space-y-8">
+        <h2 class="text-2xl font-black italic tracking-tighter">BÅSIC MAGAZINE.</h2>
+        <div class="space-y-6 text-sm leading-relaxed tracking-wide font-light">
+            <p>探索生活、设计与艺术的本质。</p>
+            <p>我们致力于通过极简的视觉语言，分享全球范围内的独特空间与文化观察。</p>
+            <p class="pt-10 opacity-60 italic">"Keep it basic, keep it real."</p>
+        </div>
+    </main>
+
+    <footer class="py-20 text-center border-t border-[#c7c0af] mt-10">
+        <p class="text-[10px] uppercase tracking-[0.3em] opacity-50">© 2026 BÅSIC MAGAZINE. ABOUT.</p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.style.maxHeight = (navLinks.style.maxHeight === "0px" || navLinks.style.maxHeight === "") ? "120px" : "0px";
+        }
+    </script>
+
+</body>
+</html>
