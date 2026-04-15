@@ -26,32 +26,27 @@
         
         #nav-links { transition: max-height 0.4s ease-out; overflow: hidden; }
 
-        /* 图片容器与遮罩效果 */
         .hotel-card {
             position: relative;
             overflow: hidden;
             border-radius: 2px;
             cursor: pointer;
-            background-color: #ccc;
         }
 
         .hotel-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%); /* 渐变暗度 */
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%); 
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* 关键：文字移到底部 */
-            align-items: flex-start; /* 文字左对齐 */
+            justify-content: flex-end; 
+            align-items: flex-start;    
             opacity: 0; 
             transition: opacity 0.4s ease;
             color: #fff;
-            text-align: left;
-            padding: 30px; /* 底部间距 */
-            backdrop-filter: blur(1px); /* 轻微模糊感 */
+            padding: 30px 24px; 
         }
 
-        /* 悬停或点击激活显示 */
         .hotel-card:hover .hotel-overlay,
         .hotel-card:active .hotel-overlay {
             opacity: 1;
@@ -95,21 +90,22 @@
         
         <div class="hotel-card shadow-xl">
             <a href="https://weibo.com/7465274644/5141170255560754" target="_blank">
-                <img src="hotel1.PNG" alt="原有酒店图片" class="hotel-img">
+                <img src="hotel1.PNG" alt="Hotel Experience" class="hotel-img">
             </a>
         </div>
+
         <div class="hotel-card shadow-xl">
             <a href="https://weibo.com/7465274644/5005435828701378" target="_blank">
-                <img src="conrad.PNG" alt="乌鲁木齐康莱德酒店" class="hotel-img">
+                <img src="conrad.jpg" alt="乌鲁木齐康莱德酒店" class="hotel-img">
                 <div class="hotel-overlay">
-                    <p class="text-[10px] tracking-[0.4em] uppercase mb-2 opacity-90 font-light">BASIC DESTINATION</p>
+                    <p class="text-[10px] tracking-[0.4em] uppercase mb-1 opacity-80 font-light">BASIC DESTINATION</p>
                     <p class="text-xl font-bold tracking-tight">乌鲁木齐康莱德酒店下午茶</p>
                 </div>
             </a>
         </div>
 
-        <div class="py-20 text-center">
-            <p class="text-[10px] uppercase tracking-[0.5em] text-[#4d3326]/30 italic font-medium">Coming Soon / 敬请期待更多内容</p>
+        <div class="py-24 text-center">
+            <p class="text-[10px] uppercase tracking-[0.6em] text-[#4d3326]/30 italic font-medium">Coming Soon / 敬请期待更多内容</p>
         </div>
 
     </main>
@@ -121,7 +117,11 @@
     <script>
         function toggleNav() {
             const el = document.getElementById('nav-links');
-            el.style.maxHeight = (el.style.maxHeight === '0px' || !el.style.maxHeight) ? '200px' : '0px';
+            if (el.style.maxHeight === '0px' || !el.style.maxHeight) {
+                el.style.maxHeight = '200px';
+            } else {
+                el.style.maxHeight = '0px';
+            }
         }
     </script>
 </body>
