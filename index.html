@@ -63,36 +63,31 @@
             footer { display: none; }
         }
 
-        /* --- 竖屏布局：彻底修正居中问题 --- */
+        /* --- 竖屏布局：严格对齐导航栏 --- */
         @media (orientation: portrait) {
             header { position: sticky; top: 0; border-bottom: 1px solid #c7c0af; }
             
-            /* 强制重置 Swiper 容器，使其回归正常块状流 */
-            .swiper { overflow: visible !important; }
+            .swiper { 
+                overflow: visible !important; 
+                width: 100%;
+            }
             
             .swiper-wrapper {
                 display: block !important; 
-                padding: 40px 24px !important;
-                max-width: 550px; 
+                padding: 40px 1.5rem !important; /* 与 px-6 保持一致 */
+                /* 关键：与导航栏 max-w-screen-md (768px) 保持一致 */
+                max-width: 768px !important; 
                 margin: 0 auto !important;
                 transform: none !important;
             }
 
             .swiper-slide {
                 width: 100% !important;
-                display: flex !important; /* 重新启用 flex 以便于内部居中 */
-                justify-content: center !important; 
+                display: block !important; 
                 transform: none !important;
                 opacity: 1 !important;
                 margin-bottom: 60px !important;
                 height: auto !important;
-            }
-
-            /* 确保链接和图片在 slide 内部是居中的 */
-            .swiper-slide a {
-                width: 100%;
-                display: block;
-                max-width: 100%;
             }
 
             .swiper-slide img {
@@ -101,7 +96,6 @@
                 aspect-ratio: 3/4;
                 object-fit: cover;
                 border-radius: 2px;
-                margin: 0 auto; /* 图片自身水平居中 */
             }
 
             footer { display: block; }
@@ -136,31 +130,31 @@
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/5280051904119993" target="_blank" class="relative group">
+                <a href="https://weibo.com/7465274644/5280051904119993" target="_blank" class="block relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol5.PNG" alt="vol5">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/5279423488068621" target="_blank" class="relative group">
+                <a href="https://weibo.com/7465274644/5279423488068621" target="_blank" class="block relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol4.JPG" alt="vol4">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/5278560929451127" target="_blank" class="relative group">
+                <a href="https://weibo.com/7465274644/5278560929451127" target="_blank" class="block relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol3.JPG" alt="vol3">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/4857556000315503" target="_blank" class="relative group">
+                <a href="https://weibo.com/7465274644/4857556000315503" target="_blank" class="block relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol2.PNG" alt="vol2">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/4854527280808008" target="_blank" class="relative group">
+                <a href="https://weibo.com/7465274644/4854527280808008" target="_blank" class="block relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol1.PNG" alt="vol1">
                 </a>
@@ -178,6 +172,9 @@
 
         function handleLayout() {
             const isLandscape = window.innerWidth > window.innerHeight;
+            const wrapper = document.querySelector('.swiper-wrapper');
+            const slides = document.querySelectorAll('.swiper-slide');
+
             if (isLandscape) {
                 if (!swiper) {
                     swiper = new Swiper(".mySwiper", {
@@ -193,6 +190,9 @@
                 if (swiper) {
                     swiper.destroy(true, true);
                     swiper = null;
+                    // 彻底清除 Swiper 留下的行内样式，确保对齐
+                    wrapper.removeAttribute('style');
+                    slides.forEach(s => s.removeAttribute('style'));
                 }
             }
         }
