@@ -17,6 +17,7 @@
             overflow-x: hidden;
         }
 
+        /* 顶部导航层级与样式 */
         header { 
             position: relative; 
             z-index: 9999; 
@@ -63,22 +64,22 @@
             footer { display: none; }
         }
 
-        /* --- 竖屏布局：严格对齐导航栏 --- */
+        /* --- 竖屏布局：强制与导航栏 100% 对齐 --- */
         @media (orientation: portrait) {
             header { position: sticky; top: 0; border-bottom: 1px solid #c7c0af; }
             
-            .swiper { 
-                overflow: visible !important; 
-                width: 100%;
+            /* 关键：让 Swiper 容器本身就具备 max-w-screen-md */
+            .mySwiper {
+                max-width: 768px !important; /* 对齐 max-w-screen-md */
+                margin: 0 auto !important;
+                overflow: visible !important;
+                padding: 40px 1.5rem !important; /* 对齐 px-6 (1.5rem) */
             }
             
             .swiper-wrapper {
                 display: block !important; 
-                padding: 40px 1.5rem !important; /* 与 px-6 保持一致 */
-                /* 关键：与导航栏 max-w-screen-md (768px) 保持一致 */
-                max-width: 768px !important; 
-                margin: 0 auto !important;
                 transform: none !important;
+                width: 100% !important;
             }
 
             .swiper-slide {
@@ -89,6 +90,8 @@
                 margin-bottom: 60px !important;
                 height: auto !important;
             }
+
+            .swiper-slide a { display: block; width: 100%; }
 
             .swiper-slide img {
                 width: 100% !important;
@@ -130,31 +133,31 @@
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/5280051904119993" target="_blank" class="block relative">
+                <a href="https://weibo.com/7465274644/5280051904119993" target="_blank" class="relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol5.PNG" alt="vol5">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/5279423488068621" target="_blank" class="block relative">
+                <a href="https://weibo.com/7465274644/5279423488068621" target="_blank" class="relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol4.JPG" alt="vol4">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/5278560929451127" target="_blank" class="block relative">
+                <a href="https://weibo.com/7465274644/5278560929451127" target="_blank" class="relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol3.JPG" alt="vol3">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/4857556000315503" target="_blank" class="block relative">
+                <a href="https://weibo.com/7465274644/4857556000315503" target="_blank" class="relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol2.PNG" alt="vol2">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/4854527280808008" target="_blank" class="block relative">
+                <a href="https://weibo.com/7465274644/4854527280808008" target="_blank" class="relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol1.PNG" alt="vol1">
                 </a>
@@ -172,6 +175,7 @@
 
         function handleLayout() {
             const isLandscape = window.innerWidth > window.innerHeight;
+            const container = document.querySelector('.mySwiper');
             const wrapper = document.querySelector('.swiper-wrapper');
             const slides = document.querySelectorAll('.swiper-slide');
 
@@ -190,10 +194,11 @@
                 if (swiper) {
                     swiper.destroy(true, true);
                     swiper = null;
-                    // 彻底清除 Swiper 留下的行内样式，确保对齐
-                    wrapper.removeAttribute('style');
-                    slides.forEach(s => s.removeAttribute('style'));
                 }
+                // 彻底清除所有 Swiper 相关的残留
+                container.removeAttribute('style');
+                wrapper.removeAttribute('style');
+                slides.forEach(s => s.removeAttribute('style'));
             }
         }
 
