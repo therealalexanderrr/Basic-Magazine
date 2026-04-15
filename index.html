@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BÅSIC MAGAZINE | 首页专栏</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
         
@@ -13,7 +14,7 @@
             background-color: #dcd8cf; 
             color: #4d3326; 
             margin: 0;
-            overflow-x: hidden; /* 防止竖屏左右乱晃 */
+            overflow-x: hidden;
         }
 
         .article-icon { 
@@ -26,37 +27,93 @@
             transition: max-height 0.5s ease-in-out; 
         }
 
-        /* --- 核心：横屏侧滑逻辑 --- */
-        @media (orientation: landscape) {
-            /* 让 main 容器变成横向排列 */
-            main {
+        /* 统一 header 样式，防止横竖屏切换跳动 */
+        header {
+            height: 80px;
+        }
+
+        /* --- Swiper 核心样式 (处理放大和全屏) --- */
+        .swiper {
+            width: 100%;
+            height: calc(100vh - 80px); /* 减去导航栏高度 */
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            /* 关键：设置未激活（两侧）图片的初始缩放比例 */
+            transition: transform 0.6s ease;
+            transform: scale(0.85); /* 默认缩小 */
+        }
+
+        /* 关键：设置当前激活（居中）图片的放大比例 */
+        .swiper-slide-active {
+            transform: scale(1); /* 居中放大 */
+        }
+
+        .swiper-slide img {
+            display: block;
+            object-fit: contain; /* 确保图片比例不失真 */
+        }
+
+        /* --- 竖屏排版 (保持原样) --- */
+        @media (orientation: portrait) {
+            /* 在竖屏下禁用 Swiper 的 Flex 布局，还原为原本的单栏下滑 */
+            .swiper-wrapper {
                 display: flex !important;
-                flex-direction: row !important;
-                overflow-x: auto !important; /* 开启水平滚动 */
-                overflow-y: hidden !important;
-                scroll-snap-type: x mandatory; /* 增加滑动吸附感，更像翻书 */
-                height: calc(100vh - 120px); /* 减去导航栏高度 */
-                padding: 20px 50px !important;
-                gap: 40px !important;
-                width: 100vw;
+                flex-direction: column !important;
+                height: auto !important;
+                transform: none !important; /* 禁用 Swiper 原生移动 */
+            }
+            .swiper-slide {
+                width: 100% !important;
+                height: auto !important;
+                transform: scale(1) !important; /* 禁用竖屏下的放大效果 */
+                margin-bottom: 64px !important; /* space-y-16 */
+                display: block !important;
+            }
+            .swiper-slide img {
+                width: 100% !important;
+                height: auto !important;
+                aspect-ratio: 3/4;
+                object-fit: cover;
+                border-radius: 0.125rem; /* rounded-sm */
+            }
+            /* 调整 main 的 padding */
+            main {
+                padding: 40px 24px !important; /* py-10 px-6 */
+                max-width: 768px; /* max-w-screen-md */
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* --- 横屏排版 (全屏+侧滑) --- */
+        @media (orientation: landscape) {
+            main {
+                max-width: none !important;
+                width: 100vw !important;
+                padding: 0 !important; /* 移除 padding 实现全屏 */
+                margin: 0 !important;
             }
 
-            /* 每个帖子在横屏下的容器 */
-            main a {
-                flex: 0 0 auto; /* 不收缩 */
-                height: 100%; /* 高度撑满 */
-                scroll-snap-align: center;
+            .swiper-slide {
+                width: 100vw !important; /* 每个帖子占满全屏宽度 */
+                height: 100% !important;
             }
 
-            /* 保持图片在侧滑时的比例 */
-            main img {
-                height: 100%;
-                width: auto; /* 让宽度根据 3:4 自动计算 */
-                object-fit: contain;
+            .swiper-slide img {
+                height: 90% !important; /* 高度适当留白，防止顶到导航栏 */
+                width: auto !important;
             }
 
-            /* 隐藏滚动条但保留滚动功能 (Chrome/Safari) */
-            main::-webkit-scrollbar {
+            /* 隐藏页脚 */
+            footer {
                 display: none;
             }
         }
@@ -65,10 +122,10 @@
 <body>
 
     <header class="sticky top-0 z-50 bg-[#dcd8cf]/95 backdrop-blur-md border-b border-[#c7c0af]">
-        <nav class="max-w-screen-md mx-auto px-6 py-6">
+        <nav class="max-w-screen-md mx-auto px-6 h-full flex flex-col justify-center">
             <div class="flex justify-between items-center">
                 <a href="index.html" class="transition-colors active:text-[#f5d04c] outline-none">
-                    <h1 class="text-3xl font-black tracking-tighter">BÅSIC MAGAZINE.</h1>
+                    <h1 class="text-3xl font-black tracking-tighter text-inherit">BÅSIC MAGAZINE.</h1>
                 </a>
                 
                 <button onclick="toggleNav()" class="p-1 hover:opacity-60 transition focus:outline-none">
@@ -93,50 +150,94 @@
         </nav>
     </header>
 
-    <main class="max-w-screen-md mx-auto px-6 py-10 space-y-16">
+    <div class="swiper mySwiper">
+        <main class="swiper-wrapper">
 
-        <a href="https://weibo.com/7465274644/5280051904119993" target="_blank" class="block group relative">
-            <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
-            <div class="aspect-[3/4] h-full overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
-                <img src="vol5.PNG" alt="vol5" class="w-full h-full object-cover">
+            <div class="swiper-slide">
+                <a href="https://weibo.com/7465274644/5280051904119993" target="_blank" class="block relative group shadow-xl transition-shadow duration-300 hover:shadow-2xl">
+                    <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-sm">文章</div>
+                    <img src="vol5.PNG" alt="vol5">
+                </a>
             </div>
-        </a>
 
-        <a href="https://weibo.com/7465274644/5279423488068621" target="_blank" class="block group relative">
-            <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
-            <div class="aspect-[3/4] h-full overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
-                <img src="vol4.JPG" alt="vol4" class="w-full h-full object-cover">
+            <div class="swiper-slide">
+                <a href="https://weibo.com/7465274644/5279423488068621" target="_blank" class="block relative group shadow-xl">
+                    <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-sm">文章</div>
+                    <img src="vol4.JPG" alt="vol4">
+                </a>
             </div>
-        </a>
 
-        <a href="https://weibo.com/7465274644/5278560929451127" target="_blank" class="block group relative">
-            <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
-            <div class="aspect-[3/4] h-full overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
-                <img src="vol3.JPG" alt="vol3" class="w-full h-full object-cover">
+            <div class="swiper-slide">
+                <a href="https://weibo.com/7465274644/5278560929451127" target="_blank" class="block relative group shadow-xl">
+                    <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-sm">文章</div>
+                    <img src="vol3.JPG" alt="vol3">
+                </a>
             </div>
-        </a>
 
-        <a href="https://weibo.com/7465274644/4857556000315503" target="_blank" class="block group relative">
-            <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
-            <div class="aspect-[3/4] h-full overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
-                <img src="vol2.PNG" alt="vol2" class="w-full h-full object-cover">
+            <div class="swiper-slide">
+                <a href="https://weibo.com/7465274644/4857556000315503" target="_blank" class="block relative group shadow-xl">
+                    <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-sm">文章</div>
+                    <img src="vol2.PNG" alt="vol2">
+                </a>
             </div>
-        </a>
 
-        <a href="https://weibo.com/7465274644/4854527280808008" target="_blank" class="block group relative">
-            <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
-            <div class="aspect-[3/4] h-full overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
-                <img src="vol1.PNG" alt="vol1" class="w-full h-full object-cover">
+            <div class="swiper-slide">
+                <a href="https://weibo.com/7465274644/4854527280808008" target="_blank" class="block relative group shadow-xl">
+                    <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-sm">文章</div>
+                    <img src="vol1.PNG" alt="vol1">
+                </a>
             </div>
-        </a>
 
-    </main>
+        </main>
+    </div>
 
     <footer class="py-20 text-center border-t border-[#c7c0af] mt-10">
         <p class="text-[10px] uppercase tracking-[0.3em] opacity-50">© 2026 BÅSIC MAGAZINE. All Rights Reserved.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <script>
+        // 初始化 Swiper 逻辑
+        var swiper = new Swiper(".mySwiper", {
+            // 处理横竖屏不同的运行模式
+            on: {
+                init: function () {
+                    checkOrientation(this);
+                },
+                orientationchange: function () {
+                    // 横竖屏切换时销毁并重新初始化，防止布局错误
+                    location.reload(); 
+                }
+            }
+        });
+
+        // 检查屏幕方向的函数
+        function checkOrientation(swiperInstance) {
+            if (window.innerHeight < window.innerWidth) {
+                // 横屏模式：开启所有轮播特效
+                swiperInstance.params.slidesPerView = "auto"; // 允许看到相邻的图
+                swiperInstance.params.centeredSlides = true; // 激活图居中
+                swiperInstance.params.spaceBetween = 0;      // 移除 gap
+                swiperInstance.params.loop = true;          // 开启无限循环
+                
+                // 开启“Coverflow”特效来实现滑到哪个哪个放大
+                swiperInstance.params.effect = "coverflow";
+                swiperInstance.params.coverflowEffect = {
+                    rotate: 0,      // 图片不旋转
+                    stretch: 0,     // 拉伸
+                    depth: 100,     // 深度感 (控制两侧缩小程度)
+                    modifier: 1,    // 修正器
+                    slideShadows: false, // 禁用两侧阴影
+                };
+                swiperInstance.update(); // 更新设置
+            } else {
+                // 竖屏模式：完全禁用 Swiper 的逻辑，让 CSS 接管垂直下滑
+                swiperInstance.destroy(true, true);
+            }
+        }
+
+        // 导航菜单控制
         function toggleNav() {
             const navLinks = document.getElementById('nav-links');
             if (navLinks.style.maxHeight === "0px" || navLinks.style.maxHeight === "") {
