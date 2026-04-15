@@ -7,51 +7,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap');
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #dcd8cf; 
-            color: #4d3326;
-            margin: 0;
-        }
-        .social-card {
-            background-color: #c7c0af;
-            transition: all 0.3s ease;
-        }
-        .social-card:hover {
-            background-color: #f5d04c;
-            transform: translateY(-5px);
-        }
-        /* 滑出动画过渡 */
-        #nav-links {
-            transition: max-height 0.5s ease-in-out;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #dcd8cf; color: #4d3326; margin: 0; }
+        .social-card { background-color: #c7c0af; transition: all 0.3s ease; }
+        .social-card:hover { background-color: #f5d04c; transform: translateY(-5px); }
+        #nav-links { transition: max-height 0.5s ease-in-out; }
     </style>
 </head>
 <body>
-
     <header class="sticky top-0 z-50 bg-[#dcd8cf]/95 backdrop-blur-md border-b border-[#c7c0af]">
         <nav class="max-w-screen-md mx-auto px-6 py-6">
             <div class="flex justify-between items-start">
-                <a href="index.html" class="transition-colors active:text-[#f5d04c] outline-none group">
-                    <h1 class="text-3xl font-black tracking-tighter text-inherit">BÅSIC MAGAZINE.</h1>
+                <a href="index.html" class="transition-colors active:text-[#f5d04c] outline-none">
+                    <h1 class="text-3xl font-black tracking-tighter">BÅSIC MAGAZINE.</h1>
                     <p class="text-[10px] tracking-[0.4em] uppercase font-light mt-1 opacity-80">BASIC SOCIAL</p>
                 </a>
-                
-                <button onclick="toggleNav()" class="p-1 hover:opacity-60 transition focus:outline-none">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
+                <button onclick="toggleNav()" class="p-1 hover:opacity-60 transition focus:outline-none"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
             </div>
-
             <div id="nav-links" style="max-height: 0px;" class="overflow-hidden">
-                <div class="mt-6 pb-2 border-t border-[#c7c0af]/30">
-                    <div class="flex justify-around items-center pt-6 text-sm font-bold tracking-widest uppercase">
-                        <a href="index.html" class="hover:text-[#f5d04c] transition">首页专栏</a>
-                        <a href="hotels.html" class="hover:text-[#f5d04c] transition">酒店分享</a>
-                        <a href="social.html" class="text-[#f5d04c] transition">社媒导航</a>
+                <div class="mt-6 pb-2 border-t border-[#c7c0af]/30 text-[12px] font-bold tracking-widest uppercase">
+                    <div class="flex justify-around items-center pt-6">
+                        <a href="index.html" class="hover:text-[#f5d04c]">首页专栏</a>
+                        <a href="hotels.html" class="hover:text-[#f5d04c]">酒店分享</a>
+                        <a href="social.html" class="text-[#f5d04c]">社媒导航</a>
+                        <a href="about.html" class="hover:text-[#f5d04c]">关于我们</a>
                     </div>
                 </div>
             </div>
@@ -59,33 +37,17 @@
     </header>
 
     <main class="max-w-screen-md mx-auto px-6 py-20 space-y-8">
-        
         <a href="https://weibo.com/u/7465274644" target="_blank" class="social-card block p-10 rounded-sm shadow-sm flex flex-col items-center justify-center text-center">
             <span class="text-[10px] tracking-[0.2em] uppercase opacity-60 mb-2">Weibo</span>
             <h2 class="text-xl font-bold italic tracking-tight">@BasicMagazine</h2>
         </a>
-
         <a href="https://www.instagram.com/basicmagazine.cn?igsh=MTh1cmJzc2pta29wNg==" target="_blank" class="social-card block p-10 rounded-sm shadow-sm flex flex-col items-center justify-center text-center">
             <span class="text-[10px] tracking-[0.2em] uppercase opacity-60 mb-2">Instagram</span>
             <h2 class="text-xl font-bold italic tracking-tight">@basicmagazine.cn</h2>
         </a>
-
     </main>
 
-    <footer class="py-20 text-center border-t border-[#c7c0af] mt-10">
-        <p class="text-[10px] uppercase tracking-[0.3em] opacity-50">© 2026 BÅSIC MAGAZINE. SOCIAL.</p>
-    </footer>
-
-    <script>
-        function toggleNav() {
-            const navLinks = document.getElementById('nav-links');
-            if (navLinks.style.maxHeight === "0px" || navLinks.style.maxHeight === "") {
-                navLinks.style.maxHeight = "120px"; 
-            } else {
-                navLinks.style.maxHeight = "0px";
-            }
-        }
-    </script>
-
+    <footer class="py-20 text-center border-t border-[#c7c0af] mt-10"><p class="text-[10px] uppercase tracking-[0.3em] opacity-50">© 2026 BÅSIC MAGAZINE. SOCIAL.</p></footer>
+    <script>function toggleNav(){const n=document.getElementById('nav-links');n.style.maxHeight=(n.style.maxHeight==="0px"||n.style.maxHeight==="")?"120px":"0px"}</script>
 </body>
 </html>
