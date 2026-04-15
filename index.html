@@ -23,7 +23,6 @@
             background-color: #dcd8cf;
         }
 
-        /* 修复标签：强制不换行，防止文字变竖 */
         .article-icon { 
             background-color: rgba(245, 208, 76, 0.9); 
             color: #000; 
@@ -60,36 +59,51 @@
                 width: auto;
                 aspect-ratio: 3/4;
                 object-fit: cover;
-                box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
             }
             footer { display: none; }
         }
 
-        /* --- 竖屏布局：彻底重置 Swiper 干扰 --- */
+        /* --- 竖屏布局：彻底修正居中问题 --- */
         @media (orientation: portrait) {
             header { position: sticky; top: 0; border-bottom: 1px solid #c7c0af; }
+            
+            /* 强制重置 Swiper 容器，使其回归正常块状流 */
+            .swiper { overflow: visible !important; }
+            
             .swiper-wrapper {
-                display: block !important; /* 强制取消 flex 排列 */
+                display: block !important; 
                 padding: 40px 24px !important;
-                max-width: 500px; /* 限制宽度防止偏移 */
+                max-width: 550px; 
                 margin: 0 auto !important;
                 transform: none !important;
             }
+
             .swiper-slide {
                 width: 100% !important;
-                display: block !important; /* 取消 flex */
+                display: flex !important; /* 重新启用 flex 以便于内部居中 */
+                justify-content: center !important; 
                 transform: none !important;
                 opacity: 1 !important;
                 margin-bottom: 60px !important;
                 height: auto !important;
             }
+
+            /* 确保链接和图片在 slide 内部是居中的 */
+            .swiper-slide a {
+                width: 100%;
+                display: block;
+                max-width: 100%;
+            }
+
             .swiper-slide img {
                 width: 100% !important;
                 height: auto !important;
                 aspect-ratio: 3/4;
                 object-fit: cover;
                 border-radius: 2px;
+                margin: 0 auto; /* 图片自身水平居中 */
             }
+
             footer { display: block; }
         }
     </style>
@@ -122,31 +136,31 @@
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/5280051904119993" target="_blank" class="block relative group">
+                <a href="https://weibo.com/7465274644/5280051904119993" target="_blank" class="relative group">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol5.PNG" alt="vol5">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/5279423488068621" target="_blank" class="block relative group">
+                <a href="https://weibo.com/7465274644/5279423488068621" target="_blank" class="relative group">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol4.JPG" alt="vol4">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/5278560929451127" target="_blank" class="block relative group">
+                <a href="https://weibo.com/7465274644/5278560929451127" target="_blank" class="relative group">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol3.JPG" alt="vol3">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/4857556000315503" target="_blank" class="block relative group">
+                <a href="https://weibo.com/7465274644/4857556000315503" target="_blank" class="relative group">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol2.PNG" alt="vol2">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/4854527280808008" target="_blank" class="block relative group">
+                <a href="https://weibo.com/7465274644/4854527280808008" target="_blank" class="relative group">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-md">文章</div>
                     <img src="vol1.PNG" alt="vol1">
                 </a>
