@@ -12,8 +12,12 @@
             background-color: #dcd8cf; 
             color: #4d3326;
         }
-        .nav-link {
-            transition: all 0.3s ease;
+        .article-icon {
+            background-color: rgba(245, 208, 76, 0.9);
+            color: #000;
+        }
+        #nav-links.hidden {
+            display: none;
         }
     </style>
 </head>
@@ -38,9 +42,9 @@
 
             <div id="nav-links" class="hidden mt-6 pb-2 border-t border-[#c7c0af]/30">
                 <div class="flex justify-around items-center pt-6 text-sm font-bold tracking-widest uppercase">
-                    <a href="index.html" class="nav-link hover:text-[#f5d04c]">首页专栏</a>
-                    <a href="hotels.html" class="nav-link text-[#f5d04c]">酒店分享</a>
-                    <a href="social.html" class="nav-link hover:text-[#f5d04c]">社媒导航</a>
+                    <a href="index.html" class="hover:text-[#f5d04c] transition">首页专栏</a>
+                    <a href="hotels.html" class="text-[#f5d04c] transition">酒店分享</a>
+                    <a href="social.html" class="hover:text-[#f5d04c] transition">社媒导航</a>
                 </div>
             </div>
         </nav>
@@ -48,17 +52,12 @@
 
     <main class="max-w-screen-md mx-auto px-6 py-10 space-y-16">
         
-        <div class="group relative">
-            <div class="aspect-[3/4] overflow-hidden rounded-sm bg-gray-300 shadow-xl">
-                <div class="w-full h-full flex items-center justify-center text-gray-500 italic">
-                    Hotel Image Placeholder (3:4)
-                </div>
+        <a href="https://weibo.com/7465274644/5141170255560754" target="_blank" class="block group relative">
+            <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded shadow-sm">文章</div>
+            <div class="aspect-[3/4] overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
+                <img src="hotel1.PNG" alt="Hotel 1" class="w-full h-full object-cover">
             </div>
-            <div class="mt-4">
-                <h3 class="text-lg font-bold">即将发布</h3>
-                <p class="text-sm opacity-60 font-light italic">Stay tuned for upcoming hotel stories...</p>
-            </div>
-        </div>
+        </a>
 
         </main>
 
