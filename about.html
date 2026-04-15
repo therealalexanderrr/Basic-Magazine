@@ -13,6 +13,16 @@
             color: #4d3326;
             margin: 0;
         }
+        #nav-links { 
+            transition: max-height 0.5s ease-in-out; 
+        }
+        .partner-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 9999px;
+            object-cover: cover;
+            border: 2px solid #c7c0af;
+        }
     </style>
 </head>
 <body>
@@ -21,19 +31,25 @@
         <nav class="max-w-screen-md mx-auto px-6 py-6">
             <div class="flex justify-between items-start">
                 <a href="index.html" class="transition-colors active:text-[#f5d04c] outline-none group">
-                    <h1 class="text-3xl font-black tracking-tighter text-inherit">BÅSIC MAGAZINE.</h1>
+                    <h1 class="text-3xl font-black tracking-tighter">BÅSIC MAGAZINE.</h1>
                     <p class="text-[10px] tracking-[0.4em] uppercase font-light mt-1 opacity-80">ABOUT US</p>
                 </a>
+                
                 <button onclick="toggleNav()" class="p-1 hover:opacity-60 transition focus:outline-none">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
                 </button>
             </div>
-            <div id="nav-links" style="max-height: 0px;" class="overflow-hidden transition-all duration-500 ease-in-out">
-                <div class="mt-6 pb-2 border-t border-[#c7c0af]/30">
-                    <div class="flex justify-around items-center pt-6 text-[12px] font-bold tracking-widest uppercase">
-                        <a href="index.html" class="hover:text-[#f5d04c]">首页专栏</a>
-                        <a href="hotels.html" class="hover:text-[#f5d04c]">酒店分享</a>
-                        <a href="social.html" class="hover:text-[#f5d04c]">社媒导航</a>
+
+            <div id="nav-links" style="max-height: 0px;" class="overflow-hidden">
+                <div class="mt-6 pb-2 border-t border-[#c7c0af]/30 text-[12px] font-bold tracking-widest uppercase">
+                    <div class="flex justify-around items-center pt-6">
+                        <a href="index.html" class="hover:text-[#f5d04c] transition">首页专栏</a>
+                        <a href="hotels.html" class="hover:text-[#f5d04c] transition">酒店分享</a>
+                        <a href="social.html" class="hover:text-[#f5d04c] transition">社媒导航</a>
                         <a href="about.html" class="text-[#f5d04c]">关于我们</a>
                     </div>
                 </div>
@@ -41,23 +57,63 @@
         </nav>
     </header>
 
-    <main class="max-w-screen-md mx-auto px-6 py-20 text-center space-y-8">
-        <h2 class="text-2xl font-black italic tracking-tighter">BÅSIC MAGAZINE.</h2>
-        <div class="space-y-6 text-sm leading-relaxed tracking-wide font-light">
-            <p>探索生活、设计与艺术的本质。</p>
-            <p>我们致力于通过极简的视觉语言，分享全球范围内的独特空间与文化观察。</p>
-            <p class="pt-10 opacity-60 italic">"Keep it basic, keep it real."</p>
-        </div>
+    <main class="max-w-screen-md mx-auto px-6 py-20">
+        
+        <section class="text-center space-y-8 mb-24">
+            <h2 class="text-2xl font-black tracking-tighter text-[#f5d04c]">BÅSIC MAGAZINE.</h2>
+            
+            <div class="space-y-6 text-sm leading-relaxed tracking-wide font-light text-left md:text-center px-4">
+                <p>BASIC 杂志是一家成立于2022年的独立杂志。致力于分享音乐，时尚和生活美学。</p>
+                <p>我们的专栏包含 <span class="font-bold uppercase tracking-tight">BASIC VOL</span> 人物与时尚，<span class="font-bold uppercase tracking-tight">BASIC DESTINATION</span> 目的地系列，<span class="font-bold uppercase tracking-tight">DESIGNIN</span> 设计分享，<span class="font-bold uppercase tracking-tight">BASIC BRIEF</span> 时尚快讯。</p>
+            </div>
+        </section>
+
+        <hr class="border-[#c7c0af] mb-20">
+
+        <section class="space-y-12">
+            <h3 class="text-center text-[10px] tracking-[0.5em] uppercase opacity-60 mb-10">Our Partner</h3>
+            
+            <div class="max-w-xs mx-auto space-y-10">
+                <a href="https://weibo.com/u/6289199861" target="_blank" class="flex flex-col items-center group">
+                    <div class="flex items-center space-x-4 mb-2">
+                        <img src="clairodaily.JPG" alt="ClairoDaily" class="partner-img group-hover:opacity-80 transition">
+                        <span class="text-lg font-bold tracking-tight group-hover:text-[#f5d04c] transition">ClairoDaily</span>
+                    </div>
+                    <span class="text-[11px] font-light opacity-60">国内领先的Clairo资讯频道</span>
+                </a>
+
+                <a href="https://weibo.com/u/7243273632" target="_blank" class="flex flex-col items-center group">
+                    <div class="flex items-center space-x-4 mb-2">
+                        <img src="clairotoday.JPG" alt="ClairoToday" class="partner-img group-hover:opacity-80 transition">
+                        <span class="text-lg font-bold tracking-tight group-hover:text-[#f5d04c] transition">ClairoToday</span>
+                    </div>
+                    <span class="text-[11px] font-light opacity-60">国内领先的Clairo资讯频道</span>
+                </a>
+
+                <a href="https://weibo.com/u/7472907334" target="_blank" class="flex flex-col items-center group">
+                    <div class="flex items-center space-x-4 mb-2">
+                        <img src="gapics.JPG" alt="GracieAbramsPics" class="partner-img group-hover:opacity-80 transition">
+                        <span class="text-lg font-bold tracking-tight group-hover:text-[#f5d04c] transition">GracieAbramsPics</span>
+                    </div>
+                    <span class="text-[11px] font-light opacity-60">国内领先的Gracie Abrams资讯频道</span>
+                </a>
+            </div>
+        </section>
+
     </main>
 
     <footer class="py-20 text-center border-t border-[#c7c0af] mt-10">
-        <p class="text-[10px] uppercase tracking-[0.3em] opacity-50">© 2026 BÅSIC MAGAZINE. ABOUT.</p>
+        <p class="text-[10px] uppercase tracking-[0.3em] opacity-50">© 2026 BÅSIC MAGAZINE. All Rights Reserved.</p>
     </footer>
 
     <script>
         function toggleNav() {
             const navLinks = document.getElementById('nav-links');
-            navLinks.style.maxHeight = (navLinks.style.maxHeight === "0px" || navLinks.style.maxHeight === "") ? "120px" : "0px";
+            if (navLinks.style.maxHeight === "0px" || navLinks.style.maxHeight === "") {
+                navLinks.style.maxHeight = "120px"; 
+            } else {
+                navLinks.style.maxHeight = "0px";
+            }
         }
     </script>
 
