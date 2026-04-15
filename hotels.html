@@ -11,13 +11,15 @@
             font-family: 'Inter', sans-serif; 
             background-color: #dcd8cf; 
             color: #4d3326;
+            margin: 0;
         }
         .article-icon {
             background-color: rgba(245, 208, 76, 0.9);
             color: #000;
         }
-        #nav-links.hidden {
-            display: none;
+        /* 滑出动画过渡 */
+        #nav-links {
+            transition: max-height 0.5s ease-in-out;
         }
     </style>
 </head>
@@ -26,10 +28,10 @@
     <header class="sticky top-0 z-50 bg-[#dcd8cf]/95 backdrop-blur-md border-b border-[#c7c0af]">
         <nav class="max-w-screen-md mx-auto px-6 py-6">
             <div class="flex justify-between items-start">
-                <div>
-                    <h1 class="text-3xl font-black tracking-tighter">BÅSIC MAGAZINE.</h1>
+                <a href="index.html" class="transition-colors active:text-[#f5d04c] outline-none group">
+                    <h1 class="text-3xl font-black tracking-tighter text-inherit">BÅSIC MAGAZINE.</h1>
                     <p class="text-[10px] tracking-[0.4em] uppercase font-light mt-1 opacity-80">BASIC DESTINATION</p>
-                </div>
+                </a>
                 
                 <button onclick="toggleNav()" class="p-1 hover:opacity-60 transition focus:outline-none">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -40,11 +42,13 @@
                 </button>
             </div>
 
-            <div id="nav-links" class="hidden mt-6 pb-2 border-t border-[#c7c0af]/30">
-                <div class="flex justify-around items-center pt-6 text-sm font-bold tracking-widest uppercase">
-                    <a href="index.html" class="hover:text-[#f5d04c] transition">首页专栏</a>
-                    <a href="hotels.html" class="text-[#f5d04c] transition">酒店分享</a>
-                    <a href="social.html" class="hover:text-[#f5d04c] transition">社媒导航</a>
+            <div id="nav-links" style="max-height: 0px;" class="overflow-hidden">
+                <div class="mt-6 pb-2 border-t border-[#c7c0af]/30">
+                    <div class="flex justify-around items-center pt-6 text-sm font-bold tracking-widest uppercase">
+                        <a href="index.html" class="hover:text-[#f5d04c] transition">首页专栏</a>
+                        <a href="hotels.html" class="text-[#f5d04c] transition">酒店分享</a>
+                        <a href="social.html" class="hover:text-[#f5d04c] transition">社媒导航</a>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -68,7 +72,11 @@
     <script>
         function toggleNav() {
             const navLinks = document.getElementById('nav-links');
-            navLinks.classList.toggle('hidden');
+            if (navLinks.style.maxHeight === "0px" || navLinks.style.maxHeight === "") {
+                navLinks.style.maxHeight = "120px"; 
+            } else {
+                navLinks.style.maxHeight = "0px";
+            }
         }
     </script>
 
