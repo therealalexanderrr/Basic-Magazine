@@ -17,12 +17,12 @@
             overflow-x: hidden;
         }
 
-        /* 顶部导航层级最高，确保菜单弹出时不被图片遮挡 */
+        /* 极高层级，确保菜单弹出时不被任何东西挡住 */
         header { 
-            height: 80px; 
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
+            position: relative; 
+            z-index: 9999; 
+            background-color: #dcd8cf;
+            border-bottom: 1px solid #c7c0af;
         }
 
         .article-icon { 
@@ -31,53 +31,54 @@
         }
 
         #nav-links { 
-            transition: max-height 0.5s ease-in-out; 
-            background-color: #dcd8cf; /* 确保下拉菜单背景不透明 */
+            transition: max-height 0.4s ease-out;
+            overflow: hidden;
         }
 
-        /* --- Swiper 滚轴样式 --- */
+        /* --- Swiper 横屏滚轴 --- */
         .swiper {
             width: 100%;
             height: calc(100vh - 80px);
-            z-index: 10; /* 低于 header */
+            z-index: 10;
         }
 
         .swiper-slide {
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s;
-            transform: scale(0.8); /* 两侧缩放稍微大一点点 */
-            opacity: 0.6;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.75); /* 两侧图片缩放 */
+            opacity: 0.4;
         }
 
         .swiper-slide-active {
-            transform: scale(1.05); /* 中间稍微放大 */
+            transform: scale(1.02); /* 中间图片稍微放大 */
             opacity: 1;
-            z-index: 20;
         }
 
         .swiper-slide img {
-            max-height: 75vh;
+            max-height: 70vh;
             width: auto;
             aspect-ratio: 3/4;
             object-fit: cover;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
         }
 
-        /* --- 竖屏恢复：单栏下滑排版 --- */
+        /* --- 竖屏恢复：单栏排版 --- */
         @media (orientation: portrait) {
+            header { position: sticky; top: 0; }
+            .swiper { height: auto; }
             .swiper-wrapper {
-                display: flex !important;
-                flex-direction: column !important;
-                height: auto !important;
-                transform: none !important;
+                display: block !important;
+                padding: 40px 24px;
+                max-width: 600px;
+                margin: 0 auto;
             }
             .swiper-slide {
                 width: 100% !important;
-                transform: scale(1) !important;
+                transform: none !important;
                 opacity: 1 !important;
-                margin-bottom: 48px !important;
+                margin-bottom: 50px !important;
                 display: block !important;
             }
             .swiper-slide img {
@@ -85,75 +86,74 @@
                 max-height: none !important;
                 height: auto !important;
             }
-            main { padding: 40px 24px !important; max-width: 768px; margin: 0 auto; }
             footer { display: block; }
-            .swiper { height: auto; overflow: visible; }
         }
 
         @media (orientation: landscape) {
             footer { display: none; }
-            main { padding: 0 !important; }
         }
     </style>
 </head>
 <body>
 
-    <header class="bg-[#dcd8cf]/95 backdrop-blur-md border-b border-[#c7c0af]">
-        <nav class="max-w-screen-md mx-auto px-6 h-full flex flex-col justify-center">
+    <header>
+        <nav class="max-w-screen-md mx-auto px-6 py-6">
             <div class="flex justify-between items-center">
-                <a href="index.html" class="transition-colors active:text-[#f5d04c] outline-none">
+                <a href="index.html" class="active:text-[#f5d04c] transition-colors">
                     <h1 class="text-3xl font-black tracking-tighter">BÅSIC MAGAZINE.</h1>
                 </a>
-                <button onclick="toggleNav()" class="p-1 hover:opacity-60 transition focus:outline-none">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+                <button onclick="toggleNav()" class="p-1">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
                 </button>
             </div>
-            <div id="nav-links" style="max-height: 0px;" class="overflow-hidden text-[12px] font-bold tracking-widest uppercase relative z-50">
-                <div class="mt-6 pb-4 border-t border-[#c7c0af]/30 flex justify-around items-center pt-6">
+            <div id="nav-links" style="max-height: 0px;">
+                <div class="mt-6 pb-2 border-t border-[#c7c0af]/30 flex justify-around items-center pt-6 text-[12px] font-bold tracking-widest uppercase">
                     <a href="index.html" class="text-[#f5d04c]">首页专栏</a>
-                    <a href="hotels.html" class="hover:text-[#f5d04c]">酒店分享</a>
-                    <a href="social.html" class="hover:text-[#f5d04c]">社媒导航</a>
-                    <a href="about.html" class="hover:text-[#f5d04c]">关于我们</a>
+                    <a href="hotels.html">酒店分享</a>
+                    <a href="social.html">社媒导航</a>
+                    <a href="about.html">关于我们</a>
                 </div>
             </div>
         </nav>
     </header>
 
     <div class="swiper mySwiper">
-        <main class="swiper-wrapper">
+        <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/5280051904119993" target="_blank" class="relative group">
+                <a href="https://weibo.com/7465274644/5280051904119993" target="_blank" class="relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
                     <img src="vol5.PNG" alt="vol5">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/5279423488068621" target="_blank" class="relative group">
+                <a href="https://weibo.com/7465274644/5279423488068621" target="_blank" class="relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
                     <img src="vol4.JPG" alt="vol4">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/5278560929451127" target="_blank" class="relative group">
+                <a href="https://weibo.com/7465274644/5278560929451127" target="_blank" class="relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
                     <img src="vol3.JPG" alt="vol3">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/4857556000315503" target="_blank" class="relative group">
+                <a href="https://weibo.com/7465274644/4857556000315503" target="_blank" class="relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
                     <img src="vol2.PNG" alt="vol2">
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="https://weibo.com/7465274644/4854527280808008" target="_blank" class="relative group">
+                <a href="https://weibo.com/7465274644/4854527280808008" target="_blank" class="relative">
                     <div class="absolute top-4 left-4 z-20 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
                     <img src="vol1.PNG" alt="vol1">
                 </a>
             </div>
-        </main>
+        </div>
     </div>
 
     <footer class="py-20 text-center border-t border-[#c7c0af] mt-10">
@@ -162,42 +162,38 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        let swiperInstance = null;
+        let swiper = null;
 
-        const initSwiper = () => {
+        function init() {
             const isLandscape = window.innerWidth > window.innerHeight;
+            const container = document.querySelector('.mySwiper');
+            
             if (isLandscape) {
-                return new Swiper(".mySwiper", {
-                    slidesPerView: 1.8,   
-                    centeredSlides: true, 
-                    spaceBetween: 10,     // 间距调小了
-                    loop: true,           
-                    grabCursor: true,
-                    keyboard: true,
+                if (swiper) swiper.destroy(true, true);
+                swiper = new Swiper(".mySwiper", {
+                    slidesPerView: 1.8, 
+                    centeredSlides: true,
+                    spaceBetween: 0, // 间距调至最小
+                    loop: true,
+                    mousewheel: true,
+                    keyboard: true
                 });
-            }
-            return null;
-        };
-
-        swiperInstance = initSwiper();
-
-        // 监听屏幕尺寸变化
-        window.addEventListener('resize', () => {
-            if (swiperInstance) {
-                swiperInstance.destroy(true, true);
-            }
-            swiperInstance = initSwiper();
-        });
-
-        // 菜单切换函数
-        function toggleNav() {
-            const navLinks = document.getElementById('nav-links');
-            if (navLinks.style.maxHeight === "0px" || navLinks.style.maxHeight === "") {
-                navLinks.style.maxHeight = "200px"; // 稍微给大一点空间
             } else {
-                navLinks.style.maxHeight = "0px";
+                if (swiper) {
+                    swiper.destroy(true, true);
+                    swiper = null;
+                }
             }
+        }
+
+        window.addEventListener('resize', init);
+        window.addEventListener('load', init);
+
+        function toggleNav() {
+            const el = document.getElementById('nav-links');
+            el.style.maxHeight = (el.style.maxHeight === '0px' || !el.style.maxHeight) ? '200px' : '0px';
         }
     </script>
 </body>
 </html>
+
