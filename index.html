@@ -12,7 +12,8 @@
             font-family: 'Inter', sans-serif; 
             background-color: #dcd8cf; 
             color: #4d3326; 
-            margin: 0; 
+            margin: 0;
+            overflow-x: hidden; /* 防止竖屏左右乱晃 */
         }
 
         .article-icon { 
@@ -20,9 +21,44 @@
             color: #000; 
         }
 
-        /* 菜单滑出动画的关键 CSS */
+        /* 导航下拉动画 */
         #nav-links { 
             transition: max-height 0.5s ease-in-out; 
+        }
+
+        /* --- 核心：横屏侧滑逻辑 --- */
+        @media (orientation: landscape) {
+            /* 让 main 容器变成横向排列 */
+            main {
+                display: flex !important;
+                flex-direction: row !important;
+                overflow-x: auto !important; /* 开启水平滚动 */
+                overflow-y: hidden !important;
+                scroll-snap-type: x mandatory; /* 增加滑动吸附感，更像翻书 */
+                height: calc(100vh - 120px); /* 减去导航栏高度 */
+                padding: 20px 50px !important;
+                gap: 40px !important;
+                width: 100vw;
+            }
+
+            /* 每个帖子在横屏下的容器 */
+            main a {
+                flex: 0 0 auto; /* 不收缩 */
+                height: 100%; /* 高度撑满 */
+                scroll-snap-align: center;
+            }
+
+            /* 保持图片在侧滑时的比例 */
+            main img {
+                height: 100%;
+                width: auto; /* 让宽度根据 3:4 自动计算 */
+                object-fit: contain;
+            }
+
+            /* 隐藏滚动条但保留滚动功能 (Chrome/Safari) */
+            main::-webkit-scrollbar {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -31,7 +67,7 @@
     <header class="sticky top-0 z-50 bg-[#dcd8cf]/95 backdrop-blur-md border-b border-[#c7c0af]">
         <nav class="max-w-screen-md mx-auto px-6 py-6">
             <div class="flex justify-between items-center">
-                <a href="index.html" class="transition-colors active:text-[#f5d04c] outline-none group">
+                <a href="index.html" class="transition-colors active:text-[#f5d04c] outline-none">
                     <h1 class="text-3xl font-black tracking-tighter">BÅSIC MAGAZINE.</h1>
                 </a>
                 
@@ -48,9 +84,9 @@
                 <div class="mt-6 pb-2 border-t border-[#c7c0af]/30 text-[12px] font-bold tracking-widest uppercase">
                     <div class="flex justify-around items-center pt-6">
                         <a href="index.html" class="text-[#f5d04c]">首页专栏</a>
-                        <a href="hotels.html" class="hover:text-[#f5d04c] transition">酒店分享</a>
-                        <a href="social.html" class="hover:text-[#f5d04c] transition">社媒导航</a>
-                        <a href="about.html" class="hover:text-[#f5d04c] transition">关于我们</a>
+                        <a href="hotels.html" class="hover:text-[#f5d04c]">酒店分享</a>
+                        <a href="social.html" class="hover:text-[#f5d04c]">社媒导航</a>
+                        <a href="about.html" class="hover:text-[#f5d04c]">关于我们</a>
                     </div>
                 </div>
             </div>
@@ -61,35 +97,35 @@
 
         <a href="https://weibo.com/7465274644/5280051904119993" target="_blank" class="block group relative">
             <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
-            <div class="aspect-[3/4] overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
+            <div class="aspect-[3/4] h-full overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
                 <img src="vol5.PNG" alt="vol5" class="w-full h-full object-cover">
             </div>
         </a>
 
         <a href="https://weibo.com/7465274644/5279423488068621" target="_blank" class="block group relative">
             <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
-            <div class="aspect-[3/4] overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
+            <div class="aspect-[3/4] h-full overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
                 <img src="vol4.JPG" alt="vol4" class="w-full h-full object-cover">
             </div>
         </a>
 
         <a href="https://weibo.com/7465274644/5278560929451127" target="_blank" class="block group relative">
             <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
-            <div class="aspect-[3/4] overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
+            <div class="aspect-[3/4] h-full overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
                 <img src="vol3.JPG" alt="vol3" class="w-full h-full object-cover">
             </div>
         </a>
 
         <a href="https://weibo.com/7465274644/4857556000315503" target="_blank" class="block group relative">
             <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
-            <div class="aspect-[3/4] overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
+            <div class="aspect-[3/4] h-full overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
                 <img src="vol2.PNG" alt="vol2" class="w-full h-full object-cover">
             </div>
         </a>
 
         <a href="https://weibo.com/7465274644/4854527280808008" target="_blank" class="block group relative">
             <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
-            <div class="aspect-[3/4] overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
+            <div class="aspect-[3/4] h-full overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]">
                 <img src="vol1.PNG" alt="vol1" class="w-full h-full object-cover">
             </div>
         </a>
@@ -113,4 +149,3 @@
 
 </body>
 </html>
-
