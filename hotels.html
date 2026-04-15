@@ -3,46 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BÅSIC MAGAZINE | 酒店分享</title>
+    <title>BÅSIC DESTINATION | 酒店分享</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #dcd8cf; color: #4d3326; margin: 0; }
-        .article-icon { background-color: rgba(245, 208, 76, 0.9); color: #000; }
-        #nav-links { transition: max-height 0.5s ease-in-out; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #dcd8cf; 
+            color: #4d3326; 
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        header { 
+            position: sticky; 
+            top: 0; 
+            z-index: 9999; 
+            background-color: #dcd8cf; 
+            border-bottom: 1px solid #c7c0af; 
+        }
+        
+        #nav-links { transition: max-height 0.4s ease-out; overflow: hidden; }
+
+        /* 图片容器与遮罩效果 */
+        .hotel-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            cursor: pointer;
+            background-color: #ccc; /* 加载前占位色 */
+        }
+
+        .hotel-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.55); /* 遮罩暗度 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; 
+            transition: opacity 0.4s ease;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            backdrop-filter: blur(2px); /* 轻微模糊感更高级 */
+        }
+
+        /* 悬停或点击激活显示 */
+        .hotel-card:hover .hotel-overlay,
+        .hotel-card:active .hotel-overlay {
+            opacity: 1;
+        }
+
+        .hotel-img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <header class="sticky top-0 z-50 bg-[#dcd8cf]/95 backdrop-blur-md border-b border-[#c7c0af]">
+
+    <header>
         <nav class="max-w-screen-md mx-auto px-6 py-6">
-            <div class="flex justify-between items-start">
-                <a href="index.html" class="transition-colors active:text-[#f5d04c] outline-none">
+            <div class="flex justify-between items-center">
+                <a href="index.html">
                     <h1 class="text-3xl font-black tracking-tighter">BÅSIC MAGAZINE.</h1>
-                    <p class="text-[10px] tracking-[0.4em] uppercase font-light mt-1 opacity-80">BASIC DESTINATION</p>
                 </a>
-                <button onclick="toggleNav()" class="p-1 hover:opacity-60 transition focus:outline-none"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                <button onclick="toggleNav()" class="p-1 focus:outline-none">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
             </div>
-            <div id="nav-links" style="max-height: 0px;" class="overflow-hidden">
-                <div class="mt-6 pb-2 border-t border-[#c7c0af]/30 text-[12px] font-bold tracking-widest uppercase">
-                    <div class="flex justify-around items-center pt-6">
-                        <a href="index.html" class="hover:text-[#f5d04c]">首页专栏</a>
-                        <a href="hotels.html" class="text-[#f5d04c]">酒店分享</a>
-                        <a href="social.html" class="hover:text-[#f5d04c]">社媒导航</a>
-                        <a href="about.html" class="hover:text-[#f5d04c]">关于我们</a>
-                    </div>
+            <div id="nav-links" style="max-height: 0px;">
+                <div class="mt-6 pb-2 border-t border-[#c7c0af]/30 flex justify-around items-center pt-6 text-[12px] font-bold tracking-widest uppercase">
+                    <a href="index.html" class="hover:text-[#f5d04c]">首页专栏</a>
+                    <a href="hotels.html" class="text-[#f5d04c]">酒店分享</a>
+                    <a href="social.html" class="hover:text-[#f5d04c]">社媒导航</a>
+                    <a href="about.html" class="hover:text-[#f5d04c]">关于我们</a>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main class="max-w-screen-md mx-auto px-6 py-10">
-        <a href="https://weibo.com/7465274644/5141170255560754" target="_blank" class="block group relative">
-            <div class="absolute top-4 left-4 z-10 article-icon px-3 py-1 text-[10px] font-bold tracking-widest rounded">文章</div>
-            <div class="aspect-[3/4] overflow-hidden rounded-sm bg-gray-300 shadow-xl transition-transform duration-500 group-hover:scale-[1.01]"><img src="hotel1.PNG" class="w-full h-full object-cover"></div>
-        </a>
+    <main class="max-w-screen-md mx-auto px-6 py-10 space-y-12">
+        
+        <div class="hotel-card shadow-xl">
+            <a href="https://weibo.com/7465274644/5005435828701378" target="_blank">
+                <img src="conrad.PNG" alt="乌鲁木齐康莱德酒店" class="hotel-img">
+                <div class="hotel-overlay">
+                    <p class="text-[10px] tracking-[0.4em] uppercase mb-2 opacity-90 font-light">BASIC DESTINATION</p>
+                    <p class="text-xl font-bold tracking-tight">乌鲁木齐康莱德酒店下午茶</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="py-20 text-center">
+            <p class="text-[10px] uppercase tracking-[0.5em] text-[#4d3326]/30 italic font-medium">Coming Soon / 敬请期待更多内容</p>
+        </div>
+
     </main>
 
-    <footer class="py-20 text-center border-t border-[#c7c0af] mt-10"><p class="text-[10px] uppercase tracking-[0.3em] opacity-50">© 2026 BÅSIC MAGAZINE. DESTINATION.</p></footer>
-    <script>function toggleNav(){const n=document.getElementById('nav-links');n.style.maxHeight=(n.style.maxHeight==="0px"||n.style.maxHeight==="")?"120px":"0px"}</script>
+    <footer class="py-20 text-center border-t border-[#c7c0af]">
+        <p class="text-[10px] uppercase tracking-[0.3em] opacity-50">© 2026 BÅSIC MAGAZINE. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            const el = document.getElementById('nav-links');
+            el.style.maxHeight = (el.style.maxHeight === '0px' || !el.style.maxHeight) ? '200px' : '0px';
+        }
+    </script>
 </body>
 </html>
