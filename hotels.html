@@ -65,7 +65,7 @@
         /* 无图文章列表样式 */
         .article-link {
             border-bottom: 1px solid #c7c0af;
-            padding: 24px 0;
+            padding: 20px 0; /* 稍微缩小上下间距 */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -75,6 +75,15 @@
         }
         .article-link:hover {
             opacity: 0.6;
+        }
+
+        /* 强制标题单行显示 */
+        .single-line-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 15px; /* 给右侧箭头留点空间 */
+            flex: 1;
         }
     </style>
 </head>
@@ -123,7 +132,7 @@
 
             <div class="hotel-card shadow-xl">
                 <a href="https://weibo.com/7465274644/5005435828701378" target="_blank">
-                    <img src="conrad.jpg" alt="乌鲁木齐康莱德酒店" class="hotel-img">
+                    <img src="conrad.PNG" alt="乌鲁木齐康莱德酒店" class="hotel-img">
                     <div class="hotel-overlay">
                         <p class="text-[10px] tracking-[0.4em] uppercase mb-1 opacity-80 font-light">BASIC DESTINATION</p>
                         <p class="text-xl font-bold tracking-tight">乌鲁木齐康莱德酒店下午茶</p>
@@ -136,67 +145,67 @@
             <p class="text-[11px] font-black uppercase tracking-[0.4em] mb-10 opacity-60 text-[#4d3326]">More Destinations</p>
             
             <a href="https://mp.weixin.qq.com/s/FDDjzbuSPimtM0OxV-kxoA" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">AlilA｜阿丽拉乌镇：现代江南水乡</span>
+                <span class="text-base font-bold tracking-tight single-line-title">AlilA｜阿丽拉乌镇：现代江南水乡</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
 
             <a href="https://mp.weixin.qq.com/s/ElIRmnrm4QXF3nx7teKYuQ" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">HYATT｜武汉光谷凯悦：璞瑜遗珠</span>
+                <span class="text-base font-bold tracking-tight single-line-title">HYATT｜武汉光谷凯悦：璞瑜遗珠</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
 
             <a href="https://mp.weixin.qq.com/s/iqHB1zKitQtiVADlDiDMGg" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">PARK HYATT｜上海柏悦酒店：安静的奢华</span>
+                <span class="text-base font-bold tracking-tight single-line-title">PARK HYATT｜上海柏悦酒店：安静的奢华</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
 
             <a href="https://mp.weixin.qq.com/s/_7JI4J1OHUjHvCEDdN9eAQ" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">HYATT CENTRIC｜香港维港凯悦尚萃</span>
+                <span class="text-base font-bold tracking-tight single-line-title">HYATT CENTRIC｜香港维港凯悦尚萃</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
 
             <a href="https://mp.weixin.qq.com/s/96ZVYIn5iti0BNJyw6SMtg" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">Westin｜重庆解放碑威斯汀：旗舰</span>
+                <span class="text-base font-bold tracking-tight single-line-title">Westin｜重庆解放碑威斯汀：旗舰</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
 
             <a href="https://mp.weixin.qq.com/s/wTNmt_pntUx-IkICPHCgCA" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">Tribute Portfolio｜三亚泰康之家臻品之选</span>
+                <span class="text-base font-bold tracking-tight single-line-title">Tribute Portfolio｜三亚泰康之家臻品之选</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
 
             <a href="https://mp.weixin.qq.com/s/ITUv0bVva4-WRQXnU8vPtg" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">Autograph Collection｜三亚山海天·傲途格精选</span>
+                <span class="text-base font-bold tracking-tight single-line-title">Autograph Collection｜三亚山海天·傲途格精选</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
 
             <a href="https://mp.weixin.qq.com/s/GWNnBOxPrddAhCeid-4BnQ" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">𝐌𝐨𝐱𝐲｜重庆解放碑Moxy酒店</span>
+                <span class="text-base font-bold tracking-tight single-line-title">𝐌𝐨𝐱𝐲｜重庆解放碑Moxy酒店</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
 
             <a href="https://mp.weixin.qq.com/s/GcbmDhXrlOscoS8FNyQTug" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">Marriott｜重庆万豪行政公寓：恰到好处</span>
+                <span class="text-base font-bold tracking-tight single-line-title">Marriott｜重庆万豪行政公寓：恰到好处</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
 
             <a href="https://mp.weixin.qq.com/s/iHXyofhDLwVfdecf0VJNYw" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">Courtyard｜库尔勒华美胜地万怡酒店</span>
+                <span class="text-base font-bold tracking-tight single-line-title">Courtyard｜库尔勒华美胜地万怡酒店</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
 
             <a href="https://mp.weixin.qq.com/s/DzUYaD4OF697598uzj12Yw" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">Renaissance｜库尔勒华美胜地万丽酒店</span>
+                <span class="text-base font-bold tracking-tight single-line-title">Renaissance｜库尔勒华美胜地万丽酒店</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
 
             <a href="https://mp.weixin.qq.com/s/gevT5dD2ilVxj-_sEEkowA" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">Kempinski｜广州德安丽舍凯宾斯基</span>
+                <span class="text-base font-bold tracking-tight single-line-title">Kempinski｜广州德安丽舍凯宾斯基</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
 
             <a href="https://mp.weixin.qq.com/s/QrdA_Sdw7Hdq4lmQGlNrMw" target="_blank" class="article-link">
-                <span class="text-lg font-bold tracking-tight">ᴛʜᴇ ᴛᴇᴍᴘʟᴇ ʜᴏᴜsᴇ｜成都博舍：“太古品质”？</span>
+                <span class="text-base font-bold tracking-tight single-line-title">ᴛʜᴇ ᴛᴇᴍᴘʟᴇ ʜᴏᴜsᴇ｜成都博舍：“太古品质”？</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
         </div>
