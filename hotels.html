@@ -38,7 +38,6 @@
         .hotel-overlay {
             position: absolute;
             inset: 0;
-            /* 渐变遮罩确保文字清晰 */
             background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%); 
             display: flex;
             flex-direction: column;
@@ -50,7 +49,6 @@
             padding: 30px 24px; 
         }
 
-        /* 轻触或悬停显示 */
         .hotel-card:hover .hotel-overlay,
         .hotel-card:active .hotel-overlay {
             opacity: 1;
@@ -62,6 +60,19 @@
             aspect-ratio: 3/4;
             object-fit: cover;
             display: block;
+        }
+
+        /* 无图文章列表样式 */
+        .article-link {
+            border-bottom: 1px solid #c7c0af;
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .article-link:hover {
+            opacity: 0.6;
         }
     </style>
 </head>
@@ -90,25 +101,96 @@
         </nav>
     </header>
 
-    <main class="max-w-screen-md mx-auto px-6 py-10 space-y-12">
+    <main class="max-w-screen-md mx-auto px-6 py-10">
         
-        <div class="hotel-card shadow-xl">
-            <a href="https://weibo.com/7465274644/5141170255560754" target="_blank">
-                <img src="hotel1.PNG" alt="Hotel Experience" class="hotel-img">
-                <div class="hotel-overlay">
-                    <p class="text-[10px] tracking-[0.4em] uppercase mb-1 opacity-80 font-light">BASIC DESTINATION</p>
-                    <p class="text-xl font-bold tracking-tight">阿那亚隐庐酒店</p>
-                </div>
-            </a>
+        <div class="space-y-12 mb-16">
+            <div class="hotel-card shadow-xl">
+                <a href="https://weibo.com/7465274644/5141170255560754" target="_blank">
+                    <img src="hotel1.PNG" alt="Hotel Experience" class="hotel-img">
+                    <div class="hotel-overlay">
+                        <p class="text-[10px] tracking-[0.4em] uppercase mb-1 opacity-80 font-light">BASIC DESTINATION</p>
+                        <p class="text-xl font-bold tracking-tight">阿那亚隐庐酒店</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="hotel-card shadow-xl">
+                <a href="https://weibo.com/7465274644/5005435828701378" target="_blank">
+                    <img src="conrad.jpg" alt="乌鲁木齐康莱德酒店" class="hotel-img">
+                    <div class="hotel-overlay">
+                        <p class="text-[10px] tracking-[0.4em] uppercase mb-1 opacity-80 font-light">BASIC DESTINATION</p>
+                        <p class="text-xl font-bold tracking-tight">乌鲁木齐康莱德酒店下午茶</p>
+                    </div>
+                </a>
+            </div>
         </div>
 
-        <div class="hotel-card shadow-xl">
-            <a href="https://weibo.com/7465274644/5005435828701378" target="_blank">
-                <img src="conrad.jpg" alt="乌鲁木齐康莱德酒店" class="hotel-img">
-                <div class="hotel-overlay">
-                    <p class="text-[10px] tracking-[0.4em] uppercase mb-1 opacity-80 font-light">BASIC DESTINATION</p>
-                    <p class="text-xl font-bold tracking-tight">乌鲁木齐康莱德酒店下午茶</p>
-                </div>
+        <div class="mt-20 border-t-2 border-[#4d3326] pt-4">
+            <p class="text-[11px] font-black uppercase tracking-[0.4em] mb-10 opacity-60">Read More / 更多目的地文章</p>
+            
+            <a href="https://mp.weixin.qq.com/s/FDDjzbuSPimtM0OxV-kxoA" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">阿那亚隐庐｜像当地人一样生活</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <a href="https://mp.weixin.qq.com/s/ElIRmnrm4QXF3nx7teKYuQ" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">上海苏宁宝丽嘉酒店｜外滩旁的艺术殿堂</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <a href="https://mp.weixin.qq.com/s/iqHB1zKitQtiVADlDiDMGg" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">上海柏悦酒店｜云端之上的居所</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <a href="https://mp.weixin.qq.com/s/_7JI4J1OHUjHvCEDdN9eAQ" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">上海浦东丽思卡尔顿｜魔都天际线的经典</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <a href="https://mp.weixin.qq.com/s/96ZVYIn5iti0BNJyw6SMtg" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">上海静安瑞吉酒店｜仪式感的极致演绎</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <a href="https://mp.weixin.qq.com/s/wTNmt_pntUx-IkICPHCgCA" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">上海新天地安达仕｜现代与传统的融合</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <a href="https://mp.weixin.qq.com/s/ITUv0bVva4-WRQXnU8vPtg" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">南京丽思卡尔顿｜六朝古都的新地标</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <a href="https://mp.weixin.qq.com/s/GWNnBOxPrddAhCeid-4BnQ" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">南京卓美亚酒店｜扬子江畔的建筑诗篇</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <a href="https://mp.weixin.qq.com/s/GcbmDhXrlOscoS8FNyQTug" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">北京宝格丽酒店｜私密的城中绿洲</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <a href="https://mp.weixin.qq.com/s/iHXyofhDLwVfdecf0VJNYw" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">北京王府半岛酒店｜皇城根下的优雅</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <a href="https://mp.weixin.qq.com/s/DzUYaD4OF697598uzj12Yw" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">深圳柏悦酒店｜大鹏湾畔的雅致生活</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <a href="https://mp.weixin.qq.com/s/gevT5dD2ilVxj-_sEEkowA" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">深圳安达仕酒店｜湾区之心的摩登居所</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <a href="https://mp.weixin.qq.com/s/QrdA_Sdw7Hdq4lmQGlNrMw" target="_blank" class="article-link">
+                <span class="text-lg font-bold tracking-tight">深圳文华东方酒店｜俯瞰全城的奢华体验</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
         </div>
 
