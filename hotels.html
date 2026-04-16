@@ -26,6 +26,7 @@
         
         #nav-links { transition: max-height 0.4s ease-out; overflow: hidden; }
 
+        /* 图片容器样式 */
         .hotel-card {
             position: relative;
             overflow: hidden;
@@ -33,9 +34,11 @@
             cursor: pointer;
         }
 
+        /* 底部浮现文字遮罩 */
         .hotel-overlay {
             position: absolute;
             inset: 0;
+            /* 渐变遮罩确保文字清晰 */
             background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%); 
             display: flex;
             flex-direction: column;
@@ -47,6 +50,7 @@
             padding: 30px 24px; 
         }
 
+        /* 轻触或悬停显示 */
         .hotel-card:hover .hotel-overlay,
         .hotel-card:active .hotel-overlay {
             opacity: 1;
@@ -91,6 +95,10 @@
         <div class="hotel-card shadow-xl">
             <a href="https://weibo.com/7465274644/5141170255560754" target="_blank">
                 <img src="hotel1.PNG" alt="Hotel Experience" class="hotel-img">
+                <div class="hotel-overlay">
+                    <p class="text-[10px] tracking-[0.4em] uppercase mb-1 opacity-80 font-light">BASIC DESTINATION</p>
+                    <p class="text-xl font-bold tracking-tight">阿那亚隐庐酒店</p>
+                </div>
             </a>
         </div>
 
